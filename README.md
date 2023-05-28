@@ -1,5 +1,5 @@
 # Golang Raft NBA Application
-This project is based on [this](LINK TBA) Distributed Consensus Medium post.  
+This project is based on [this](https://reshefsharvit.medium.com/distributed-consensus-f78e454484a1) Distributed Consensus Medium post.  
 [Raft](https://raft.github.io/) is a consensus algorithm.  
 This project uses [Hashicorp's Raft Implementation](https://github.com/hashicorp/raft)
 
