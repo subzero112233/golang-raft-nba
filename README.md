@@ -4,16 +4,16 @@ This project is based on [this](https://reshefsharvit.medium.com/distributed-con
 This project uses [Hashicorp's Raft Implementation](https://github.com/hashicorp/raft)
 
 ## What's in here
-Raft protocol is set to serve in the range of 7010, 7011 onwards.
-The Raft API for handling Nodes and Status plus NBA Stats is set to serve in the range of 7110, 7210 onwards
-We are going to start 3 nodes and join them together.
-Once a node joins, it gets synced with all the data.
+Raft protocol is set to serve in the range of 7010, 7011 onwards.  
+The Raft API for handling Nodes and Status plus NBA Stats is set to serve in the range of 7110, 7210 onwards.  
+We are going to start 3 nodes and join them together.  
+Once a node joins, it gets synced with all the data.  
 
 
 # How to test it
-1.Start the bootstrapping node.
-You need to bootstrap a single node, once. For that, set the BOOTSTRAP_CLUSTER=true environment variable once.
-Each server needs to bind a port. use the PORT=int environment variable.
+1.Start the bootstrapping node.  
+You need to bootstrap a single node, once. For that, set the BOOTSTRAP_CLUSTER=true environment variable once.  
+Each server needs to bind a port. use the PORT=int environment variable. 
 ```
 BOOTSTRAP_CLUSTER=true PORT=7010 go run cmd/main.go
 ```
@@ -46,9 +46,9 @@ curl --location --request POST 'http://localhost:7110/raft/join' \
 --data-raw '{"id": "7012", "address": "localhost:7012"}'
 ```
 
-6.from here on, you can replace the leader node and see how the nodes elect a new leader and replicate the new node.
+6.from here on, you can replace the leader node and see how the nodes elect a new leader and replicate the new node.  
   Once the leader is alive, commands will have to be submitted to the new leader. sending a command to the wrong node
-  will result in an error, indicating what's the address and id of the newly elected leader.
+  will result in an error, indicating what's the address and id of the newly elected leader.  
 
 
 
