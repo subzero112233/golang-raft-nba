@@ -1,0 +1,146 @@
+openapi: "3.0.0"
+info:
+  title: "actionsrunner"
+  description: |
+    Specification for raft application.
+  version: "0.0.1"
+  contact:
+    name: "Reshef Sharvit"
+    email: "reshefsharvit21@gmail.com"
+paths:
+  /nba/stats:
+    post:
+      operationId: "add-stat"
+      summary: "add a raft node"
+      requestBody:
+        description: "add a stat"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Event"
+      responses:
+        '200':
+          description: |
+            Operation successful.
+        'default':
+          description: |
+            Operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorOutput"
+  /raft/nodes:
+    summary: "get all nodes"
+    get:
+      operationId: "get-nodes"
+      summary: "get all nodes"
+      responses:
+        '200':
+          description: |
+            Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+        'default':
+          description: |
+            Operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorOutput"
+  /raft/join:
+    summary: "add raft node"
+    post:
+      operationId: "add-node"
+      summary: "add a raft node"
+      requestBody:
+        description: "add a node"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Node"
+      responses:
+        '200':
+          description: |
+            Operation successful.
+        'default':
+          description: |
+            Operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorOutput"
+  /raft/remove:
+    summary: "remove raft node"
+    post:
+      operationId: "remove-node"
+      summary: "remove a raft node"
+      requestBody:
+        description: "remove a node"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Node"
+      responses:
+        '200':
+          description: |
+            Operation successful.
+        'default':
+          description: |
+            Operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorOutput"
+components:
+  schemas:
+    ErrorOutput:
+      type: "object"
+      required: ["message", "status_code"]
+      properties:
+        message:
+          type: "string"
+        status_code:
+          type: "integer"
+    Node:
+      type: object
+      required:
+        - id
+        - address
+      properties:
+        id:
+          type: string
+        address:
+          type: string
+    Event:
+      type: object
+      required:
+        - player_id
+        - player_name
+        - game_time
+        - stat
+      properties:
+        player_id:
+          type: string
+        player_name:
+          type: string
+        game_time:
+          type: string
+        stat:
+          type: string
+          enum:
+            - free_throw
+            - two_pointer
+            - three_pointer
+            - flagrant_foul
+            - technical_foul
+            - personal_foul
+            - block
+            - assist
+            - rebound
+            - turnover
+
